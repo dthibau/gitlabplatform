@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    hostname: gitlab.formation.org
+    container_name: gitlab
+    ports:
+    - '22:22'    
+    - 443:443
+    - 80:80
+    - '5050:5050'
+    volumes:
+      - /home/dthibau/Formations/GitlabPlatform/MyWork/GITLAB_HOME/config:/etc/gitlab
+      - /home/dthibau/Formations/GitlabPlatform/MyWork/GITLAB_HOME/logs:/var/log/gitlab
+      - /home/dthibau/Formations/GitlabPlatform/MyWork/GITLAB_HOME/data:/var/opt/gitlab
+    networks:
+      - gitlab-network
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest 
+    volumes:
+      - /home/dthibau/Formations/GitlabPlatform/MyWork/GITLAB_RUNNER/config:/etc/gitlab-runner:Z
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - gitlab-network
+
+networks:
+  gitlab-network:
