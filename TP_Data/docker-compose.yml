@@ -11,15 +11,15 @@ services:
     - 80:80
     - '5050:5050'
     volumes:
-      - /home/dthibau/Formations/GitlabPlatform/MyWork/GITLAB_HOME/config:/etc/gitlab
-      - /home/dthibau/Formations/GitlabPlatform/MyWork/GITLAB_HOME/logs:/var/log/gitlab
-      - /home/dthibau/Formations/GitlabPlatform/MyWork/GITLAB_HOME/data:/var/opt/gitlab
+      - /home/dthibau/Formations/GITLAB_HOME/config:/etc/gitlab
+      - /home/dthibau/Formations/GITLAB_HOME/logs:/var/log/gitlab
+      - /home/dthibau/Formations/GITLAB_HOME/data:/var/opt/gitlab
     networks:
       - gitlab-network
   gitlab-runner:
     image: gitlab/gitlab-runner:latest 
     volumes:
-      - /home/dthibau/Formations/GitlabPlatform/MyWork/GITLAB_RUNNER/config:/etc/gitlab-runner:Z
+      - /home/dthibau/Formations/GITLAB_RUNNER/config:/etc/gitlab-runner:Z
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - gitlab-network
